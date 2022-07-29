@@ -1,9 +1,16 @@
+import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from './src/components/buttons/Button';
 import { textStyles } from './src/theme/styles/text';
 
 export default function App() {
+  const [loaded] = useFonts({
+    "sk-modernist": require('./assets/fonts/Sk-Modernist-Regular.otf'),
+  });
+  if (!loaded) {
+    return null;
+  }
   return (
     <View style={styles.container}>
       <Text style={textStyles.big}>Header 1</Text>
@@ -14,7 +21,9 @@ export default function App() {
       <StatusBar style="auto" />
       <Text style={textStyles.subHeader}>==============</Text>
 
-      <Button type="1" />
+      <Button type="primary" label='Create an account' />
+      <Button type="secondary" label='Login' />
+      <Button type="secondary" label='Login to my account' />
     </View>
   );
 }
@@ -25,5 +34,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    fontFamily: 'sk-modernist'
   }
 });
